@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rock, Paper, Scissors</title>
+</head>
+<body>
+<script>
+var aiPlay;
+var playerScore = 0;
+var aiScore = 0;
+function computerPlay(){
+    var aiNum = Math.floor((Math.random() * 3) + 1);
+    switch (aiNum){
+        case 1:
+	    aiPlay = "Rock";
+	    break;
+        case 2:
+	    aiPlay = "Paper";
+	    break;
+	case 3:
+	    aiPlay = "Scissors";
+	    break;
+	}
+	return aiPlay;
+}
+
+function playRound(ai, player){
+    if (ai == player){
+        console.log("It's a draw!");
+    }
+    
+    if (ai == "Rock" && player == "Scissors"){
+        console.log("You lose! Rock beats Scissors");
+	 aiScore ++;
+    }
+    
+    if (player == "Rock" && ai == "Scissors"){
+        console.log("You win! Rock beats Scissors");
+	 playerScore ++;
+    }
+    
+    if (ai == "Paper" && player == "Rock"){
+        console.log("You lose! Paper beats Rock");
+	 aiScore ++;
+    }
+    
+    if (player == "Paper" && ai == "Rock"){
+        console.log("You win! Paper beats Rock");
+	 playerScore ++;
+    }
+    
+    if (ai == "Scissors" && player == "Paper"){
+        console.log("You lose! Scissors beats Paper");
+	 aiScore ++;
+    }
+    
+    if (player == "Scissors" && ai == "Paper"){
+        console.log("You win! Scissors beats Paper");
+	 playerScore ++;
+    }
+}
+
+function game(){
+    for (i = 1; i <= 5; i++){
+        var playerPlay = prompt("Choose Rock, Paper or Scissors");
+        const playerSelection = playerPlay.charAt(0).toUpperCase() + playerPlay.slice(1)
+        const computerSelection = computerPlay();
+        playRound(computerSelection, playerSelection);
+	console.log("Your Score: " + playerScore + ", Computer's Score: " + aiScore);
+    }
+    if (playerScore > aiScore){
+        console.log("You win the match!");
+    } else if (playerScore < aiScore){
+        console.log("You lose the match!");
+    } else{
+        console.log("The game ends in a draw!");
+    }
+}
+console.log("---------------------ROCK, PAPER, SCISSORS---------------------");
+game();
+</script>
+</body>
+</html>
